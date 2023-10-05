@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>My New Hugo Site</title>
+    <link>http://example.org/</link>
+    <description>Recent content on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 05 Oct 2023 10:04:59 +0000</lastBuildDate><atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Test_post</title>
+      <link>http://example.org/post/test_post/</link>
+      <pubDate>Thu, 05 Oct 2023 10:04:59 +0000</pubDate>
+      
+      <guid>http://example.org/post/test_post/</guid>
+      <description>This is some content
+def add(a: int b: int) -&amp;gt; int: &amp;#34;&amp;#34;&amp;#34;Adds two numbers&amp;#34;&amp;#34;&amp;#34; return a + b </description>
+    </item>
+    
+  </channel>
+</rss>

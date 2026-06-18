@@ -1,10 +1,9 @@
 ---
-title: PayGate
-description: Payment gateway integration layer for processing and reconciling transactions across multiple payment providers.
-tech: [Python, FastAPI, PostgreSQL]
+title: Payment Gateway & Remittance API
+description: Payment gateway and remittance platform with merchant payment processing, cross-currency transfers, double-entry accounting, idempotency guarantees, and async webhook delivery.
+tech: [Python, FastAPI, PostgreSQL, SQLAlchemy, asyncpg, JWT]
+concepts: [Financial Systems, Double-Entry Ledger, Event-Driven Architecture, Idempotency]
 github: https://github.com/Galiishaq/paygate
 featured: true
 order: 2
 ---
-
-Handles payment initiation, webhook processing, and reconciliation across providers with a unified API surface.

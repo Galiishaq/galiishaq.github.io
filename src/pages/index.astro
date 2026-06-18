@@ -1,93 +1,418 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import { getCollection } from 'astro:content';
 
 const projects = (await getCollection('projects'))
-  .sort((a, b) => a.data.order - b.data.order)
-  .slice(0, 3);
+  .sort((a, b) => a.data.order - b.data.order);
 ---
 <Base>
-  <section class="hero container">
-    <p class="greeting">Hi, I'm</p>
-    <h1>Ishaq Gali</h1>
-    <p class="tagline">Backend developer building APIs, data systems, and service architectures with Python.</p>
-    <div class="hero-links">
-      <a href="/projects" class="btn">View projects</a>
-      <a href="https://github.com/Galiishaq" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+  <!-- HERO -->
+  <section id="hero" class="hero">
+    <div class="container">
+      <p class="eyebrow">Muftawu Ishaq — Kumasi, Ghana</p>
+      <h1>Building practical software<br />and data systems.</h1>
+      <p class="sub">
+        I design and develop backend platforms, financial applications, and operational
+        systems that help organizations solve real-world problems.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="https://github.com/Galiishaq" target="_blank" rel="noopener" class="btn-secondary">GitHub</a>
+        <a href="#contact" class="btn-secondary">Contact</a>
+      </div>
+      <div class="tech-tags">
+        {['Python', 'FastAPI', 'Django', 'PostgreSQL', 'SQLAlchemy', 'DDD', 'CQRS', 'Analytics'].map(t => (
+          <span class="tag">{t}</span>
+        ))}
+      </div>
     </div>
   </section>
 
-  <section class="projects-section container">
-    <div class="section-header">
-      <h2>Projects</h2>
-      <a href="/projects">View all →</a>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <p class="section-label">About</p>
+      <h2 class="section-title">Backend Engineer & Analytics Developer</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I am a Statistics graduate from KNUST with a focus on backend engineering,
+            software architecture, and analytics. My work centres on building business
+            applications, financial systems, and operational platforms that help
+            organizations improve efficiency and make better decisions.
+          </p>
+          <p>
+            I enjoy designing systems with clean architecture — separating domain logic
+            from infrastructure, building reliable APIs, and applying analytical thinking
+            to practical problems.
+          </p>
+        </div>
+        <div class="about-stats">
+          <div class="stat">
+            <span class="stat-num">3+</span>
+            <span class="stat-label">Backend systems built</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">BSc</span>
+            <span class="stat-label">Statistics, KNUST 2024</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">1yr</span>
+            <span class="stat-label">Public sector experience</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="projects-grid">
-      {projects.map(p => (
-        <ProjectCard
-          title={p.data.title}
-          description={p.data.description}
-          tech={p.data.tech}
-          github={p.data.github}
-          live={p.data.live}
-        />
-      ))}
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <p class="section-label">Projects</p>
+      <h2 class="section-title">Selected Work</h2>
+      <p class="section-sub">
+        Real systems built end-to-end — from domain model to deployment.
+      </p>
+      <div class="projects-grid">
+        {projects.map(p => (
+          <ProjectCard
+            title={p.data.title}
+            description={p.data.description}
+            tech={p.data.tech}
+            concepts={p.data.concepts}
+            github={p.data.github}
+            live={p.data.live}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <p class="section-label">Experience</p>
+      <h2 class="section-title">Work History</h2>
+      <div class="exp-list">
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div>
+              <h3>National Service Personnel — Statistics Department</h3>
+              <span class="exp-org">Asokore Mampong Municipal Assembly</span>
+            </div>
+            <span class="exp-period">Oct 2024 – Sep 2025</span>
+          </div>
+          <ul>
+            <li>Built backend functionality for the Assembly website, converting static pages into a dynamic CMS serving 8+ departments</li>
+            <li>Designed an employee management system prototype using Python (DDD principles) to track 150+ staff records and project workflows</li>
+            <li>Conducted statistical analysis and produced data reports supporting administrative decision-making</li>
+            <li>Automated data collection workflows, reducing manual reporting time by approximately 40%</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div>
+              <h3>Financial Secretary</h3>
+              <span class="exp-org">National Service Personnel Association (NASPA), Asokore Mampong Chapter</span>
+            </div>
+            <span class="exp-period">Oct 2024 – Sep 2025</span>
+          </div>
+          <ul>
+            <li>Managed financial operations for a 50+ member organization</li>
+            <li>Prepared quarterly financial reports and expenditure analysis</li>
+            <li>Coordinated budgeting and planning for organizational events</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div>
+              <h3>Accountant</h3>
+              <span class="exp-org">MB Gali Susu Enterprise, Kumasi</span>
+            </div>
+            <span class="exp-period">Sep 2020 – Present · Part-time</span>
+          </div>
+          <ul>
+            <li>Manage financial operations processing 50,000+ daily transactions</li>
+            <li>Maintain bookkeeping systems tracking deposits, withdrawals, and revenue</li>
+            <li>Developed Excel-based forecasting models for transaction volume and liquidity planning</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <p class="section-label">Skills</p>
+      <h2 class="section-title">Technical Capabilities</h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h4>Backend Development</h4>
+          <div class="skill-tags">
+            {['Python', 'FastAPI', 'Django', 'Flask', 'SQLAlchemy', 'REST APIs'].map(s => <span class="tag">{s}</span>)}
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Databases</h4>
+          <div class="skill-tags">
+            {['PostgreSQL', 'SQLite', 'MySQL'].map(s => <span class="tag">{s}</span>)}
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Software Architecture</h4>
+          <div class="skill-tags">
+            {['Domain Driven Design', 'CQRS', 'Repository Pattern', 'Event-Driven Systems', 'Message Bus'].map(s => <span class="tag">{s}</span>)}
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Data & Analytics</h4>
+          <div class="skill-tags">
+            {['Pandas', 'NumPy', 'Power BI', 'Excel', 'Forecasting', 'Machine Learning'].map(s => <span class="tag">{s}</span>)}
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Tools</h4>
+          <div class="skill-tags">
+            {['Git', 'GitHub', 'Linux', 'Docker'].map(s => <span class="tag">{s}</span>)}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="container">
+      <p class="section-label">Education</p>
+      <h2 class="section-title">Academic Background</h2>
+      <div class="edu-card">
+        <div class="edu-main">
+          <h3>Bachelor of Science in Statistics</h3>
+          <span class="edu-school">Kwame Nkrumah University of Science and Technology (KNUST)</span>
+          <p class="edu-note">Second Class Upper Division · Graduated September 2024</p>
+        </div>
+        <div class="edu-project">
+          <p class="edu-project-label">Final Year Project</p>
+          <p>
+            <strong>Application of Machine Learning and Deep Learning in Forecasting for Hospital Bed Capacity Planning</strong> —
+            Developed predictive models using ARIMA, SARIMA, LSTM, and Random Forest to forecast hospital bed occupancy
+            and support resource allocation at KNUST Hospital.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">Get in Touch</h2>
+      <p class="section-sub">
+        Interested in working together or discussing a project? Feel free to reach out.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:galiishaq@gmail.com" class="contact-item">
+          <span class="contact-label">Email</span>
+          <span>galiishaq@gmail.com</span>
+        </a>
+        <a href="https://github.com/Galiishaq" target="_blank" rel="noopener" class="contact-item">
+          <span class="contact-label">GitHub</span>
+          <span>github.com/Galiishaq</span>
+        </a>
+        <div class="contact-item contact-item--muted">
+          <span class="contact-label">LinkedIn</span>
+          <span>Coming soon</span>
+        </div>
+      </div>
     </div>
   </section>
 </Base>
 
 <style>
-  .hero {
-    padding: 6rem 1.5rem 4rem;
-  }
-  .greeting {
-    color: var(--accent);
+  /* HERO */
+  .hero { padding: 6rem 0 5rem; }
+  .eyebrow {
+    font-size: 0.82rem;
     font-family: var(--mono);
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.04em;
   }
   h1 {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    margin-bottom: 1rem;
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
   }
-  .tagline {
+  .sub {
+    font-size: 1.05rem;
     color: var(--muted);
-    font-size: 1.1rem;
     max-width: 540px;
     margin-bottom: 2rem;
+    line-height: 1.7;
   }
-  .hero-links { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn {
+  .hero-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    padding: 0.55em 1.25em;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background 0.15s;
+    text-decoration: none;
     display: inline-block;
-    padding: 0.6rem 1.4rem;
+  }
+  .btn-primary:hover { background: #1d4ed8; text-decoration: none; }
+  .btn-secondary {
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.55em 1.25em;
     border-radius: 6px;
     font-size: 0.9rem;
     font-weight: 500;
-    background: var(--accent);
-    color: #fff;
+    transition: border-color 0.15s;
     text-decoration: none;
-    transition: opacity 0.2s;
+    display: inline-block;
   }
-  .btn:hover { opacity: 0.85; text-decoration: none; }
-  .btn-ghost {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text);
-  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  .tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
-  .projects-section { padding-bottom: 4rem; }
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 1.5rem;
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 4rem;
+    align-items: start;
   }
-  .section-header h2 { font-size: 1.5rem; }
-  .section-header a { color: var(--muted); font-size: 0.9rem; }
+  .about-text p { color: var(--muted); margin-bottom: 1rem; }
+  .about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .stat-num { display: block; font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+  .stat-label { font-size: 0.82rem; color: var(--muted); }
+
+  /* PROJECTS */
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 1.25rem;
+  }
+
+  /* EXPERIENCE */
+  .exp-list { display: flex; flex-direction: column; gap: 2.5rem; }
+  .exp-item { padding-left: 1.25rem; border-left: 2px solid var(--border); }
+  .exp-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     gap: 1rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .exp-meta h3 { font-size: 1rem; margin-bottom: 0.2rem; }
+  .exp-org { font-size: 0.85rem; color: var(--muted); display: block; }
+  .exp-period {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-family: var(--mono);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .exp-item ul {
+    padding-left: 1.1rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.25rem;
+  }
+  .skill-group {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+  .skill-group h4 { font-size: 0.85rem; margin-bottom: 0.75rem; font-weight: 600; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+  /* EDUCATION */
+  .edu-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 680px;
+  }
+  .edu-main {
+    padding: 1.5rem;
+    background: var(--surface);
+  }
+  .edu-main h3 { font-size: 1.1rem; margin-bottom: 0.25rem; }
+  .edu-school { font-size: 0.9rem; color: var(--muted); display: block; margin-bottom: 0.25rem; }
+  .edu-note { font-size: 0.82rem; color: var(--muted); font-family: var(--mono); margin: 0; }
+  .edu-project {
+    padding: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .edu-project-label {
+    font-size: 0.72rem;
+    font-family: var(--mono);
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+  .edu-project p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; margin: 0; }
+
+  /* CONTACT */
+  .contact-links { display: flex; flex-direction: column; max-width: 480px; }
+  .contact-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border);
+    border-bottom: none;
+    font-size: 0.9rem;
+    color: var(--text);
+    transition: background 0.12s;
+    text-decoration: none;
+  }
+  .contact-item:first-child { border-radius: 8px 8px 0 0; }
+  .contact-item:last-child { border-bottom: 1px solid var(--border); border-radius: 0 0 8px 8px; }
+  .contact-item:not(.contact-item--muted):hover { background: var(--surface); color: var(--text); }
+  .contact-item--muted { color: var(--muted); cursor: default; }
+  .contact-label { font-size: 0.78rem; font-family: var(--mono); color: var(--muted); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .exp-meta { flex-direction: column; }
+    .hero { padding: 4rem 0 3rem; }
   }
 </style>

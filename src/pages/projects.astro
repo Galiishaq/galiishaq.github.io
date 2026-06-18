@@ -18,6 +18,7 @@ const projects = (await getCollection('projects'))
           title={p.data.title}
           description={p.data.description}
           tech={p.data.tech}
+          concepts={p.data.concepts}
           github={p.data.github}
           live={p.data.live}
         />

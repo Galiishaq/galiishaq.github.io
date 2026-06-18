@@ -6,9 +6,11 @@ interface Props {
   description?: string;
 }
 const {
-  title = 'Ishaq Gali — Backend Developer',
-  description = 'Backend developer building APIs and distributed systems with Python.',
+  title = 'Muftawu Ishaq — Backend Engineer',
+  description = 'Statistics graduate building backend APIs, financial systems, and data-driven business applications with Python.',
 } = Astro.props;
+
+const siteUrl = 'https://galiishaq.github.io';
 ---
 <!doctype html>
 <html lang="en">
@@ -17,18 +19,36 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <title>{title}</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={siteUrl} />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   </head>
   <body>
     <header>
       <div class="container nav-inner">
-        <a href="/" class="nav-brand">ig.</a>
+        <a href="/#hero" class="nav-brand">mi.</a>
         <nav>
-          <a href="/">Home</a>
-          <a href="/projects">Projects</a>
-          <a href="/blog">Blog</a>
+          <a href="/#about">About</a>
+          <a href="/#projects">Projects</a>
+          <a href="/#experience">Experience</a>
+          <a href="/#contact">Contact</a>
         </nav>
       </div>
     </header>
@@ -39,7 +59,7 @@ const {
 
     <footer>
       <div class="container footer-inner">
-        <span>© {new Date().getFullYear()} Ishaq Gali</span>
+        <span>© {new Date().getFullYear()} Muftawu Ishaq</span>
         <div class="footer-links">
           <a href="https://github.com/Galiishaq" target="_blank" rel="noopener">GitHub</a>
           <a href="mailto:galiishaq@gmail.com">Email</a>
@@ -55,7 +75,8 @@ const {
     padding: 1rem 0;
     position: sticky;
     top: 0;
-    background: var(--bg);
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
     z-index: 10;
   }
   .nav-inner {
@@ -65,21 +86,20 @@ const {
   }
   .nav-brand {
     font-family: var(--mono);
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--accent);
     text-decoration: none;
   }
   nav { display: flex; gap: 2rem; }
-  nav a { color: var(--muted); font-size: 0.9rem; }
+  nav a { color: var(--muted); font-size: 0.9rem; font-weight: 500; }
   nav a:hover { color: var(--text); text-decoration: none; }
 
-  main { min-height: calc(100vh - 130px); }
+  main { min-height: 100vh; }
 
   footer {
     border-top: 1px solid var(--border);
     padding: 1.5rem 0;
-    margin-top: 4rem;
   }
   .footer-inner {
     display: flex;
@@ -91,4 +111,9 @@ const {
   .footer-links { display: flex; gap: 1.5rem; }
   .footer-links a { color: var(--muted); }
   .footer-links a:hover { color: var(--text); text-decoration: none; }
+
+  @media (max-width: 640px) {
+    nav { gap: 1.25rem; }
+    nav a { font-size: 0.82rem; }
+  }
 </style>

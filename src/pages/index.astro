@@ -1,0 +1,93 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects'))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+---
+<Base>
+  <section class="hero container">
+    <p class="greeting">Hi, I'm</p>
+    <h1>Ishaq Gali</h1>
+    <p class="tagline">Backend developer building APIs, data systems, and service architectures with Python.</p>
+    <div class="hero-links">
+      <a href="/projects" class="btn">View projects</a>
+      <a href="https://github.com/Galiishaq" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+    </div>
+  </section>
+
+  <section class="projects-section container">
+    <div class="section-header">
+      <h2>Projects</h2>
+      <a href="/projects">View all →</a>
+    </div>
+    <div class="projects-grid">
+      {projects.map(p => (
+        <ProjectCard
+          title={p.data.title}
+          description={p.data.description}
+          tech={p.data.tech}
+          github={p.data.github}
+          live={p.data.live}
+        />
+      ))}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding: 6rem 1.5rem 4rem;
+  }
+  .greeting {
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin-bottom: 1rem;
+  }
+  .tagline {
+    color: var(--muted);
+    font-size: 1.1rem;
+    max-width: 540px;
+    margin-bottom: 2rem;
+  }
+  .hero-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-block;
+    padding: 0.6rem 1.4rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .btn:hover { opacity: 0.85; text-decoration: none; }
+  .btn-ghost {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  .projects-section { padding-bottom: 4rem; }
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1.5rem;
+  }
+  .section-header h2 { font-size: 1.5rem; }
+  .section-header a { color: var(--muted); font-size: 0.9rem; }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+</style>
